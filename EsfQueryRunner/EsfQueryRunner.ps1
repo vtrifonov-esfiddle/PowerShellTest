@@ -1,10 +1,9 @@
 ﻿Function Start-EsfQueryRunner {
-    $elasticSearch = "C:\Program Files\elasticsearch-5.1.1\bin\elasticsearch.bat"
+    $elasticSearch = "C:\Program Files\elasticsearch-5.1.1\"
     $elasticSearchConfig = "$PSScriptRoot\EsfQueryRunnerConfig\"
 
-    start-process -FilePath $elasticSearch -ArgumentList "-Epath.conf=$elasticSearchConfig"
+    start-process -FilePath (Resolve-Path "$elasticSearch\bin\elasticsearch.bat") -ArgumentList "-Epath.conf=$elasticSearchConfig"
     Start-Sleep 10
-    echo "waited for input idle"
 }
 
 Start-EsfQueryRunner
